@@ -3,7 +3,9 @@
 # child crashes, and we want to log which one before exiting.
 set -uo pipefail
 
-echo "[entrypoint] PORT=${PORT:-<unset>} BACKEND_INTERNAL_PORT=${BACKEND_INTERNAL_PORT:-8000}"
+UDS_PATH="/tmp/uvicorn.sock"
+
+echo "[entrypoint] PORT=${PORT:-<unset>}"
 
 # Persist SQLite via /data when a Railway Volume is mounted there.
 if mkdir -p /data 2>/dev/null && touch /data/.w 2>/dev/null; then
@@ -14,13 +16,18 @@ else
     echo "[entrypoint] /data not writable; SQLite stays on ephemeral fs"
 fi
 
-echo "[entrypoint] starting uvicorn on 127.0.0.1:${BACKEND_INTERNAL_PORT:-8000}"
-uvicorn main:app \
-    --host 127.0.0.1 \
-    --port "${BACKEND_INTERNAL_PORT:-8000}" \
-    --log-level info \
-    &
+rm -f "$UDS_PATH"
+
+echo "[entrypoint] starting uvicorn on unix:$UDS_PATH"
+uvicorn main:app --uds "$UDS_PATH" --log-level info &
 UVICORN_PID=$!
+
+# Wait up to 10s for the socket to appear before launching Caddy, so the
+# first /api requests don't 502 due to a startup race.
+for _ in $(seq 1 20); do
+    [ -S "$UDS_PATH" ] && { echo "[entrypoint] uvicorn socket ready"; break; }
+    sleep 0.5
+done
 
 echo "[entrypoint] starting caddy on :${PORT:-8080}"
 caddy run --config /etc/caddy/Caddyfile --adapter caddyfile &

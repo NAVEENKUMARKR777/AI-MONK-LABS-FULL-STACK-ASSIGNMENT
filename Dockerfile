@@ -30,8 +30,7 @@ WORKDIR /app
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PORT=8080 \
-    BACKEND_INTERNAL_PORT=8000
+    PORT=8080
 
 COPY --from=caddy-bin /usr/bin/caddy /usr/local/bin/caddy
 

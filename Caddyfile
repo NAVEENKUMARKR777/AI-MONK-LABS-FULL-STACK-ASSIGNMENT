@@ -5,9 +5,9 @@
 }
 
 :{$PORT} {
-	# /api/* -> uvicorn on the loopback port (prefix stripped before forward)
+	# /api/* -> uvicorn over a unix socket (no TCP port for Railway to misdetect)
 	handle_path /api/* {
-		reverse_proxy 127.0.0.1:{$BACKEND_INTERNAL_PORT}
+		reverse_proxy unix//tmp/uvicorn.sock
 	}
 
 	# Everything else -> built React app, with SPA fallback to index.html
