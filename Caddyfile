@@ -4,7 +4,10 @@
 	persist_config off
 }
 
-:{$PORT} {
+# Bind on multiple ports so we can't be tripped up by Railway's target-port
+# config or by PORT being overridden at runtime. Caddy deduplicates if the
+# values collide (e.g. PORT=8000).
+:8000, :8080, :{$PORT} {
 	# /api/* -> uvicorn over a unix socket (no TCP port for Railway to misdetect)
 	handle_path /api/* {
 		reverse_proxy unix//tmp/uvicorn.sock
