@@ -71,7 +71,7 @@ Same image as Railway runs — useful for verifying the full build:
 
 ```powershell
 docker build -t nested-tags-tree .
-docker run --rm -p 8080:8080 -v ${PWD}/.localdata:/data nested-tags-tree
+docker run --rm -p 8080:8000 -v ${PWD}/.localdata:/data nested-tags-tree
 ```
 
 Open <http://localhost:8080>. SQLite persists to `.localdata/trees.db`.

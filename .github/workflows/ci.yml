@@ -103,7 +103,7 @@ jobs:
 
       - name: Boot container and probe endpoints
         run: |
-          docker run -d --name app -p 8080:8080 nested-tags-tree:ci
+          docker run -d --name app -p 8080:8000 nested-tags-tree:ci
 
           for i in $(seq 1 30); do
             if curl -fsS http://localhost:8080/api/trees >/dev/null 2>&1; then

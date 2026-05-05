@@ -56,7 +56,7 @@ Build and run the same image you ship to Railway:
 
 ```powershell
 docker build -t nested-tags-tree .
-docker run --rm -p 8080:8080 -v ${PWD}/.localdata:/data nested-tags-tree
+docker run --rm -p 8080:8000 -v ${PWD}/.localdata:/data nested-tags-tree
 ```
 
 Then open <http://localhost:8080>. The volume mount mimics Railway's

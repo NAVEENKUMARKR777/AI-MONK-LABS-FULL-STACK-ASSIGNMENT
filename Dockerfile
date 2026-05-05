@@ -30,7 +30,7 @@ WORKDIR /app
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PORT=8080
+    PORT=8000
 
 COPY --from=caddy-bin /usr/bin/caddy /usr/local/bin/caddy
 
@@ -44,5 +44,5 @@ COPY Caddyfile /etc/caddy/Caddyfile
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-EXPOSE 8080
+EXPOSE 8000
 CMD ["/entrypoint.sh"]
