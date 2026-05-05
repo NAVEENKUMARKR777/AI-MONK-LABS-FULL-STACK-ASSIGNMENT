@@ -1,0 +1,21 @@
+{
+	auto_https off
+	admin off
+	persist_config off
+}
+
+:{$PORT} {
+	# /api/* -> uvicorn on the loopback port (prefix stripped before forward)
+	handle_path /api/* {
+		reverse_proxy 127.0.0.1:{$BACKEND_INTERNAL_PORT}
+	}
+
+	# Everything else -> built React app, with SPA fallback to index.html
+	handle {
+		root * /app/dist
+		try_files {path} /index.html
+		file_server
+	}
+
+	encode zstd gzip
+}

@@ -1,0 +1,196 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: #f5f6fa;
+  color: #222;
+}
+
+.app {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 0 16px 48px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.app-header button {
+  background: #2d8cf0;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.app-header button:hover { background: #1f7fdc; }
+
+.tree-card {
+  background: white;
+  border: 1px solid #d4dbe6;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.tree-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+/* TagView */
+.tag {
+  border: 1px solid #6aa9ff;
+  border-radius: 4px;
+  margin: 6px 0;
+  background: #cfe2ff;
+}
+
+.tag-header {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  gap: 8px;
+}
+
+.tag-toggle {
+  width: 28px;
+  height: 24px;
+  background: #f8fafc;
+  border: 1px solid #94a3b8;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.tag-name {
+  flex: 1;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 6px;
+  border-radius: 3px;
+}
+
+.tag-name:hover { background: rgba(255, 255, 255, 0.4); }
+
+.tag-name-input {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 6px;
+  border: 1px solid #2d8cf0;
+  border-radius: 3px;
+  outline: none;
+}
+
+.tag-add-child {
+  background: #f8fafc;
+  border: 1px solid #94a3b8;
+  border-radius: 3px;
+  padding: 4px 12px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.tag-add-child:hover { background: #e2e8f0; }
+
+.tag-body {
+  padding: 4px 10px 10px 28px;
+  background: white;
+  margin: 0 6px 6px;
+  border-radius: 3px;
+}
+
+.tag-data-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: white;
+  border: 1px solid #d4dbe6;
+  border-radius: 3px;
+  margin: 6px;
+}
+
+.tag-data-row label {
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.tag-data-row input {
+  flex: 1;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  padding: 4px 6px;
+  font-size: 13px;
+  outline: none;
+}
+
+.tag-data-row input:focus { border-color: #2d8cf0; }
+
+.export-output {
+  margin-top: 12px;
+  padding: 12px;
+  background: #f8fafc;
+  border: 1px solid #d4dbe6;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+.tree-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.tree-actions button {
+  background: #f8fafc;
+  border: 1px solid #94a3b8;
+  border-radius: 3px;
+  padding: 6px 16px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.tree-actions button:hover { background: #e2e8f0; }
+
+.tree-actions .delete-btn {
+  margin-left: auto;
+  color: #dc2626;
+  border-color: #fca5a5;
+}
+
+.status {
+  font-size: 12px;
+  color: #6b7280;
+  padding: 6px 0;
+}
+
+.status.error { color: #dc2626; }
